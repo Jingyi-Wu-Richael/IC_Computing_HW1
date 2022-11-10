@@ -1,0 +1,109 @@
+Summarise your findings here (see specification).
+
+=================== Question 5 ===================
+
+Loading Sudoku board from file 'mystery1.dat'... Success!
+The board needs 421546 steps of make_move.
+The number of recursions of this board is 421547
+The 'mystery1' board has a solution:
+    1   2   3   4   5   6   7   8   9   
+  +===========+===========+===========+
+A | 8 : 1 : 9 | 7 : 4 : 6 | 2 : 5 : 3 |
+  +---+---+---+---+---+---+---+---+---+
+B | 5 : 2 : 3 | 8 : 1 : 9 | 4 : 6 : 7 |
+  +---+---+---+---+---+---+---+---+---+
+C | 7 : 6 : 4 | 2 : 3 : 5 | 1 : 8 : 9 |
+  +===========+===========+===========+
+D | 6 : 5 : 8 | 9 : 7 : 1 | 3 : 4 : 2 |
+  +---+---+---+---+---+---+---+---+---+
+E | 4 : 7 : 2 | 5 : 6 : 3 | 9 : 1 : 8 |
+  +---+---+---+---+---+---+---+---+---+
+F | 9 : 3 : 1 | 4 : 8 : 2 | 6 : 7 : 5 |
+  +===========+===========+===========+
+G | 1 : 8 : 6 | 3 : 2 : 7 | 5 : 9 : 4 |
+  +---+---+---+---+---+---+---+---+---+
+H | 3 : 9 : 7 | 6 : 5 : 4 | 8 : 2 : 1 |
+  +---+---+---+---+---+---+---+---+---+
+I | 2 : 4 : 5 | 1 : 9 : 8 | 7 : 3 : 6 |
+  +===========+===========+===========+
+The board costs 0.166771 seconds to run.
+
+Loading Sudoku board from file 'mystery2.dat'... Success!
+The board needs 11532 steps of make_move.
+The number of recursions of this board is 11533
+The board costs 0.011315 seconds to run.
+A solution cannot be found.
+
+Loading Sudoku board from file 'mystery3.dat'... Success!
+The board needs 14133 steps of make_move.
+The number of recursions of this board is 14134
+The 'mystery3' board has a solution:
+    1   2   3   4   5   6   7   8   9   
+  +===========+===========+===========+
+A | 9 : 1 : 4 | 8 : 7 : 3 | 5 : 6 : 2 |
+  +---+---+---+---+---+---+---+---+---+
+B | 6 : 2 : 8 | 5 : 1 : 4 | 3 : 7 : 9 |
+  +---+---+---+---+---+---+---+---+---+
+C | 7 : 3 : 5 | 6 : 2 : 9 | 1 : 4 : 8 |
+  +===========+===========+===========+
+D | 3 : 6 : 7 | 1 : 8 : 5 | 2 : 9 : 4 |
+  +---+---+---+---+---+---+---+---+---+
+E | 5 : 8 : 1 | 4 : 9 : 2 | 7 : 3 : 6 |
+  +---+---+---+---+---+---+---+---+---+
+F | 4 : 9 : 2 | 7 : 3 : 6 | 8 : 5 : 1 |
+  +===========+===========+===========+
+G | 8 : 4 : 9 | 2 : 5 : 7 | 6 : 1 : 3 |
+  +---+---+---+---+---+---+---+---+---+
+H | 1 : 5 : 3 | 9 : 6 : 8 | 4 : 2 : 7 |
+  +---+---+---+---+---+---+---+---+---+
+I | 2 : 7 : 6 | 3 : 4 : 1 | 9 : 8 : 5 |
+  +===========+===========+===========+
+The board costs 0.007478 seconds to run.
+
+From the results shown above, we can draw a conclusion from both the running time and the steps of the make_move function: 
+
+	- mystery1.dat = "extremely hard" difficulty
+	- mystery2.dat = impossible to solve
+	- mystery3.dat = "hard" difficulty
+	
+Firstly, the number of missing digits in each 'mystery' file is listed below:
+
+	- mystery1.dat - 58
+	- mystery2.dat - 57
+	- mystery3.dat - 57
+
+Secondly, in sudoku.cpp, I measured the steps of putting numbers into their right position:
+
+	- mystery1.dat needed 421546 steps to solve.
+	- mystery2.dat needed 11532 steps to find out that the puzzle was impossible.
+	- mystery3.dat needed 14133 steps to solve.
+
+Thirdly, in sudoku.cpp, I calculated the number of recursions:
+
+	- mystery1.dat - 421547
+	- mystery2.dat - 11533
+	- mystery3.dat - 14134
+
+Fourthly, in sudoku.cpp, I calculated the number of backwards steps:
+
+	- mystery1.dat - 421488
+	- mystery2.dat - 11532
+	- mystery3.dat - 14076
+
+Fifthly, in main.cpp, based on the running time calculator, the time
+taken for calling the solve_board function is given below:
+
+	- mystery1.dat took 0.166771s to solve.
+	- mystery2.dat took 0.011315s to find out that the puzzle was impossible.
+	- mystery3.dat took 0.007478 to solve.
+
+In conclusion, it is found that the second mystery sudoku board cannot be solved. The first one takes much longer than the third one (0.004896 seconds), at 0.165871 seconds. More steps and recursions are required to answer the first one [421547] than the third one [14134]. This should imply that mystery 1 is more challenging than mystery 3 in terms of difficulty. The board's arrangement of the numbers, on the other hand, might have been to blame, which would have required more repetitions until a solution was discovered. 
+
+Since there are various ways to solve the issue, different algorithms may have an impact. To be more precise, there are three aspects of the algorithm that can affect how many times the method recurses. The starting positions are A1, A9, I1, and I9, the computation order is row-based or column-based, and the digit order (try from 1 to 9; from 9 to 1). From 1 to 9, the mystery1 board requires more attempts to solve than the mystery3 board in the row-major, top-left; row-major, bottom-right; and column-major, top-left orders, but the mystery3 board requires more attempts than the mystery1 board in the column major and bottom-right. Beginning from the A1 position and trying from 9 to 1, the mystery1 board requires more recursions to be solved than the mystery3 board, and the mystery1 board requires more recursions to be solved.
+
+I created my own algorithm and ran calculations from 1 to 9 using the common row major top left order. The assumption of possibilities should be varied because the origin board has different default settings. The programme explores additional options when solving the mystery1 board in order to arrive at the right answer. The mystery1 board is therefore more challenging to solve from the perspective of this computer method.
+
+Human perception of the difficulty of completing sudoku puzzles should be influenced by the quantity of missing values and the persistence of empty spots. People frequently consider the third board to be the most challenging because the first row and the ninth row are both vacant, making it feel challenging to deduce the right answer.
+
+The programme gave up on mystery2.dat after 11,533 recursions, making it the one that is impossible to solve. Meaning that, after exhausting all options, it was unable to identify a solution. The programme likewise terminated after just completing row "H," so it simply did not complete the task and did not declare a success.
+
